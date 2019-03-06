@@ -1,10 +1,13 @@
 
 $(document).ready(function(){
-//  Set number counter to 60 (seconds).
-let number = 60;
+//  Set number counter to 30 (seconds).
+let number = 30;
 
 //  Variable that will hold our interval ID
 var intervalId;
+
+//hide summit button in form until the quiz starts
+$("#submit-button").hide();
 
 //create the question bank to populate the site with
 let questionBank = [
@@ -29,21 +32,31 @@ let questionBank = [
 //listen for a click event on the 'Start' button to allow user to enter quiz (timer also starts)
 //$("#start-button").on("click", init);
 $("#start-button").click(function(){
-
-    console.log("entered start-button")
-
     // prevent button click from refreshing the page
     event.preventDefault();
 
     //hide the start button
-    $("#start-button").hide();
+    //$("#start-button").hide();
+    //<style type="text/css">#start-button{display: none;}</style>
+    (this).style.display = "none";
 
     //populate the div with the questions from the bank
     populateQuestions();   
 
+    //show summit button in form again
+    $("#submit-button").show();
+
     //start the timer
-    startTimer();
-    
+    startTimer();   
+});
+
+//listen for a click event to submit quiz
+$("#submit-button").click(function(){
+    // prevent button click from refreshing the page
+    event.preventDefault();
+
+    //end the game and display stats
+    endGame();
 });
 
 function startTimer(){
@@ -61,8 +74,10 @@ function decrement() {
     $("#timer").text(number);
     // Once number hits zero...
     if (number === 0) {
-      //  Clears our intervalId
+      //  Clears our intervalId (stop timer)
       clearInterval(intervalId);
+      //end game and tally up
+      //endGame()
     }
 }
 
@@ -77,25 +92,15 @@ function populateQuestions(){
         for (j=0 ; j<questionBank[i].options.length ; j++){
             //create a label and set its text to be the question then display it
             let opt = questionBank[i].options[j];  
-            //needed format:        <input type="radio" id="q0o0" name="q0" class="radio-button" value="Whitney Houston"></input>    
-            $("#questions").append("<input type='radio' id= "+ "'q"+i+"o"+j+"' name= "+ "'q"+i+"'"+ " class='radio-button' value='" + opt +"'>" + opt +"<br>");
+            //needed format:        <input type="radio" id="q0o0" name="q0" class="radio-button" value="Whitney Houston" <span class='radio-button-text'> Whitney Houston</span>><br>
+            //$("#questions").append("<input type='radio' id= "+ "'q"+i+"o"+j+"' name= "+ "'q"+i+"' class='radio-button' value='" + opt + "' <span class='radio-button-text'>"+ opt +"</span><br>");
+            $("#questions").append("<input type='radio' id= "+ "'q"+i+"o"+j+"' name= "+ "'q"+i+"' class='radio-button' value='" + opt + "' ><span class='radio-button-text'>"+ opt +"</span><br>");
+
             // the name of the radio button is needed to group the items under the same question
             }
         $("#questions").append("<br>");
     };// end of for loop
 }// populateQuestions
-
-$("#submit-button").click(function(){
-
-    console.log("entered submit-button")
-
-    // prevent button click from refreshing the page
-    event.preventDefault();
-
-    //end the game and display stats
-    endGame();
-});
-
 
 // function to end the game when the user clicks "Done" OR timer runs out
 function endGame(){
@@ -128,11 +133,6 @@ function endGame(){
         }
     }
 
-    //show results
-    console.log("yes" + correct);
-    console.log("nope" + incorrect);
-    console.log("unan" + unanswered);
-
     // clear all elements inside the form (including done button)
     $("#quizForm").empty();
 
@@ -157,17 +157,7 @@ function endGame(){
     unansweredDiv.text("Unanswered: "+ unanswered);
     unansweredDiv.addClass("unanswered-div");
     $("#quizForm").append(unansweredDiv);
-}
+
+}//end of endGame function
 
 });//end of (document).ready
-
-
-         
-
-
-
-            
-
-          
-
-

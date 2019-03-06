@@ -18,26 +18,29 @@
 <body>
     <div id="body-wrapper">
         <!-- title -->
-        <div>
+        <div id="header">
             <h1 id="title">Music Trivia</h1>
         </div>
     
         <!-- timer and content -->
-        <div>
+        <div id="mainContent">
             <!-- timer -->
             <div>
-                <h1>Time Remaining: <span id="timer">60</span> seconds</h1>
+                <h2 class="h2Style">Time Remaining: <span class="h2Style" id="timer">30</span> seconds</h2>
             </div>
 
             <!-- questions -->
+            <div id="formOuter">
             <form id="quizForm">
                 <!-- this dive gets automatically populated with questions from a bank at lauch of page -->
                 <div id="questions">
-                    <button id="start-button">Start!</button>
+                    <!-- button shown initially, hidden after quiz starts -->
+                    <button class="buttonStyles" id="start-button">Start!</button>
                 </div>
-            
-                <input type="submit" id="submit-button" value="Submit">
-            </form>
+                <!-- hidden initially, shown during quiz, removed after submission -->
+                <input type="submit" name="submit-button" class="buttonStyles" id="submit-button" value="Submit">
+            </form>  
+            </div>       
         </div>
     </div>
 
