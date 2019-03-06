@@ -1,28 +1,71 @@
 
-//create the bank of questions to populate the site with
-let questionBank = [
-    {q:"Whose 2013 world tour was called ‘The Mrs Carter Show’?", a:"Beyonce", options:["Whitney Houston","Beyonce","Shakira"]},
-    {q:"What was Madonna’s first UK top ten single?", a:"Holiday", options:["Holiday","Madonna","Like a Virgin"]},
-    {q:"The live album Beauty and the Beat featured pianist George Shearring and which singer? ", a:"Peggy Lee", options:["Martha Argerich","Peggy Lee","Claudio Arrau"]},
-    {q:"Whose band was the Tijuana Brass?", a:"Herb Alpert", options:["MJs","Herb Alpert","Carlton Main"]},
-    {q:"Who were Cliff Richard’s backing group through the 60s?", a:"The Shadows", options:["The Shadows","The voices","The Rythms"]},
-    {q:"Miley Cyrus is the daughter of country singer Billy Ray Cyrus?", a:"True", options:["True","False"]},
-    {q:"Stewart Copeland was the drummer with which band?", a:"The Police", options:["Ilegal Voices","Poping Beats","The Police"]},
-    {q:"Who were the famous backing singers on most of Elvis Presley’s early hits?", a:"The Jordanaires", options:["The Shadows","The Jordanaires","The Cascades"]},
-    {q:"Which piano-playing singer’s first hit was The Fat Man?", a:"", options:["Fats","Regina Spektor","Sarah Bareilles"]},
-    {q:"Who made the highly rated 1959 jazz album Kind of Blue? Miles Davis?", a:"Miles Davis", options:["Frank Sinatra","Nina Simones","Miles Davis"]}
-];
-    
-//console log values of the question bank to confirm structure
-// console.log(questionBank);
-// console.log(questionBank[0].q);
-// console.log(questionBank[0].a);
-// console.log(questionBank[0].options[1]);
+$(document).ready(function(){
+//  Set number counter to 60 (seconds).
+let number = 60;
 
-//listen for a click on the 'Start' button to allow user to start the timer and enter quiz
+//  Variable that will hold our interval ID
+var intervalId;
+
+
+//listen for a click event on the 'Start' button to allow user to enter quiz (timer also starts)
+//$("#start-button").on("click", init);
+$("#start-button").click(function(){
+
+    // prevent button click from refreshing the page
+    event.preventDefault();
+
     //hide the start button
+    $("#start-button").hide();
 
-    //create and display a variable that self updates for the time inside of the quiz
+    console.log("entered init")
+    //populate the div with the questions from the bank
+    populateQuestions();   
+
+    //start the timer
+    startTimer();
+    
+});
+
+function startTimer(){
+    //  Clearing the intervalId prior to setting our new intervalId will not allow multiple instances.
+    clearInterval(intervalId);
+
+    // set an interval to decrement the number by 1 every second
+    intervalId = setInterval(decrement, 1000);
+}
+        
+function decrement() {
+    //  Decrease number by one.
+    number--;
+    //  Show the number in the #show-number tag.
+    $("#timer").text(number);
+    // Once number hits zero...
+    if (number === 0) {
+      //  Clears our intervalId
+      clearInterval(intervalId);
+    }
+}
+
+function populateQuestions(){
+    //create the question bank to populate the site with
+    let questionBank = [
+        {q:"Whose 2013 world tour was called ‘The Mrs Carter Show’?", a:"Beyonce", options:["Whitney Houston","Beyonce","Shakira"]},
+        {q:"What was Madonna’s first UK top ten single?", a:"Holiday", options:["Holiday","Madonna","Like a Virgin"]},
+        {q:"The live album Beauty and the Beat featured pianist George Shearring and which singer? ", a:"Peggy Lee", options:["Martha Argerich","Peggy Lee","Claudio Arrau"]},
+        {q:"Whose band was the Tijuana Brass?", a:"Herb Alpert", options:["MJs","Herb Alpert","Carlton Main"]},
+        {q:"Who were Cliff Richard’s backing group through the 60s?", a:"The Shadows", options:["The Shadows","The voices","The Rythms"]},
+        {q:"Miley Cyrus is the daughter of country singer Billy Ray Cyrus?", a:"True", options:["True","False"]},
+        {q:"Stewart Copeland was the drummer with which band?", a:"The Police", options:["Ilegal Voices","Poping Beats","The Police"]},
+        {q:"Who were the famous backing singers on most of Elvis Presley’s early hits?", a:"The Jordanaires", options:["The Shadows","The Jordanaires","The Cascades"]},
+        {q:"Which piano-playing singer’s first hit was The Fat Man?", a:"", options:["Fats","Regina Spektor","Sarah Bareilles"]},
+        {q:"Who made the highly rated 1959 jazz album Kind of Blue? Miles Davis?", a:"Miles Davis", options:["Frank Sinatra","Nina Simones","Miles Davis"]}
+    ];
+
+    //console log values of the question bank to confirm structure
+    // console.log(questionBank);
+    // console.log(questionBank[0].q);
+    // console.log(questionBank[0].a);
+    // console.log(questionBank[0].options[1]);
 
     //populate the site with questions from the bank PROGRAMMATICALLY 
     for (i=0 ; i<questionBank.length ; i++){
@@ -39,11 +82,12 @@ let questionBank = [
             // the name of the radio button is needed to group the items under the same question
             }
         $("#questions").append("<br>");
-    };
+    };// end of for loop
+}// populateQuestions
 
+// function to end the game when the user clicks "Done" OR timer runs out
+function endGame(){
 
- 
-//when the user clicks on Done form OR when the timer runs out:
     //create var correct =0
     //create var incorrect =0
     //create var unanswered =0
@@ -57,7 +101,9 @@ let questionBank = [
         //unanswered++
 
     //show a modal with user stats
+}
 
+});//end of (document).ready
 
 
          
