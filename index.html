@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Music Trivia</title>
+
+    <!-- Added link to css and styling -->
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto" rel="stylesheet">
+
+    <!-- Added link to the jQuery Library -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script> -->
+</head>
+<body>
+    <div id="body-wrapper">
+        <!-- title -->
+        <div>
+            <h1 id="title">Music Trivia</h1>
+        </div>
+    
+        <!-- timer and content -->
+        <div>
+            <!-- timer -->
+            <div>
+                <h1 id="timer">Time Remaining: 00 seconds</h1>
+            </div>
+
+            <!-- questions -->
+            <form>
+                <!-- this dive gets automatically populated with questions from a bank at lauch of page -->
+                <div id="questions">
+                
+                </div>
+            
+                <input type="submit" id="submit-button" value="Submit">
+            </form>
+        </div>
+    </div>
+
+    <!-- Add reference to js file -->
+    <script type="text/javascript" src="assets/javascript/app.js"></script>
+    
+</body>
+</html>
