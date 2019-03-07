@@ -1,7 +1,7 @@
 
 $(document).ready(function(){
-//  Set number counter to 30 (seconds).
-let number = 30;
+//  Set number counter to 60 (seconds).
+let number = 60;
 
 //  Variable that will hold our interval ID
 var intervalId;
@@ -77,7 +77,7 @@ function decrement() {
       //  Clears our intervalId (stop timer)
       clearInterval(intervalId);
       //end game and tally up
-      //endGame()
+      endGame()
     }
 }
 
